@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  rstudio:
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile
+    image: akira1744/renv_docker:4.3.3
+    ports:
+      - "8788:8787"
+    volumes:
+      - .:/home/rstudio/work
+      - cache:/home/rstudio/.cache
+    tty: true
+    stdin_open: true
+    restart: always
+    environment:
+      - ROOT=TRUE
+      - TZ=Asia/Tokyo
+      - PASSWORD=rs
+      - DISABLE_AUTH=true
+      - RUNROOTLESS=false
+
+volumes:
+  cache:
+    external: true

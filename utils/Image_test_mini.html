@@ -1,0 +1,2854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="dcterms.date" content="2024-05-06">
+  <title>RStudio&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x691C;&#x8A3C;</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+</style>
+  <style>
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } 
+code span.an { color: #008000; } 
+code span.at { } 
+code span.bu { } 
+code span.cf { color: #0000ff; } 
+code span.ch { color: #008080; } 
+code span.cn { } 
+code span.co { color: #008000; } 
+code span.cv { color: #008000; } 
+code span.do { color: #008000; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.im { } 
+code span.in { color: #008000; } 
+code span.kw { color: #0000ff; } 
+code span.op { } 
+code span.ot { color: #ff4000; } 
+code span.pp { color: #ff4000; } 
+code span.sc { color: #008080; } 
+code span.ss { color: #008080; } 
+code span.st { color: #008080; } 
+code span.va { } 
+code span.vs { color: #008080; } 
+code span.wa { color: #008000; font-weight: bold; } 
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+  <style type="text/css">:root{--background-body: #fff;--background: #efefef;--background-alt: #f7f7f7;--selection: #9e9e9e;--text-main: #363636;--text-bright: #000;--text-muted: #70777f;--links: #0076d1;--focus: #0096bfab;--border: #dbdbdb;--code: #000;--animation-duration: 0.1s;--button-base: #d0cfcf;--button-hover: #9b9b9b;--scrollbar-thumb: rgb(170, 170, 170);--scrollbar-thumb-hover: var(--button-hover);--form-placeholder: #949494;--form-text: #1d1d1d;--variable: #39a33c;--highlight: #ff0;--select-arrow: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='utf-8'?%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' height='62.5' width='116.9' fill='%23161f27'%3E %3Cpath d='M115.3,1.6 C113.7,0 111.1,0 109.5,1.6 L58.5,52.7 L7.4,1.6 C5.8,0 3.2,0 1.6,1.6 C0,3.2 0,5.8 1.6,7.4 L55.5,61.3 C56.3,62.1 57.3,62.5 58.4,62.5 C59.4,62.5 60.5,62.1 61.3,61.3 L115.2,7.4 C116.9,5.8 116.9,3.2 115.3,1.6Z'/%3E %3C/svg%3E")}html{scrollbar-color:#aaa #fff;scrollbar-color:var(--scrollbar-thumb) var(--background-body);scrollbar-width:thin}body{font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;line-height:1.4;max-width:800px;margin:20px auto;padding:0 10px;word-wrap:break-word;color:#363636;color:var(--text-main);background:#fff;background:var(--background-body);text-rendering:optimizeLegibility}button{transition:background-color 0.1s linear, border-color 0.1s linear, color 0.1s linear, box-shadow 0.1s linear, transform 0.1s ease;transition:background-color var(--animation-duration) linear,border-color var(--animation-duration) linear,color var(--animation-duration) linear,box-shadow var(--animation-duration) linear,transform var(--animation-duration) ease}input{transition:background-color 0.1s linear, border-color 0.1s linear, color 0.1s linear, box-shadow 0.1s linear, transform 0.1s ease;transition:background-color var(--animation-duration) linear,border-color var(--animation-duration) linear,color var(--animation-duration) linear,box-shadow var(--animation-duration) linear,transform var(--animation-duration) ease}textarea{transition:background-color 0.1s linear, border-color 0.1s linear, color 0.1s linear, box-shadow 0.1s linear, transform 0.1s ease;transition:background-color var(--animation-duration) linear,border-color var(--animation-duration) linear,color var(--animation-duration) linear,box-shadow var(--animation-duration) linear,transform var(--animation-duration) ease}h1{font-size:2.2em;margin-top:0}h1,h2,h3,h4,h5,h6{margin-bottom:12px;margin-top:24px}h1{color:#000;color:var(--text-bright)}h2{color:#000;color:var(--text-bright)}h3{color:#000;color:var(--text-bright)}h4{color:#000;color:var(--text-bright)}h5{color:#000;color:var(--text-bright)}h6{color:#000;color:var(--text-bright)}strong{color:#000;color:var(--text-bright)}h1,h2,h3,h4,h5,h6,b,strong,th{font-weight:600}q::before{content:none}q::after{content:none}blockquote{border-left:4px solid #0096bfab;border-left:4px solid var(--focus);margin:1.5em 0;padding:0.5em 1em;font-style:italic}q{border-left:4px solid #0096bfab;border-left:4px solid var(--focus);margin:1.5em 0;padding:0.5em 1em;font-style:italic}blockquote>footer{font-style:normal;border:0}blockquote cite{font-style:normal}address{font-style:normal}a[href^='mailto:']::before{content:'📧 '}a[href^='tel:']::before{content:'📞 '}a[href^='sms:']::before{content:'💬 '}mark{background-color:#ff0;background-color:var(--highlight);border-radius:2px;padding:0 2px 0 2px;color:#000}a>code,a>strong{color:inherit}button,select,input[type='submit'],input[type='reset'],input[type='button'],input[type='checkbox'],input[type='range'],input[type='radio']{cursor:pointer}input,select{display:block}[type='checkbox'],[type='radio']{display:initial}input{color:#1d1d1d;color:var(--form-text);background-color:#efefef;background-color:var(--background);font-family:inherit;font-size:inherit;margin-right:6px;margin-bottom:6px;padding:10px;border:none;border-radius:6px;outline:none}button{color:#1d1d1d;color:var(--form-text);background-color:#efefef;background-color:var(--background);font-family:inherit;font-size:inherit;margin-right:6px;margin-bottom:6px;padding:10px;border:none;border-radius:6px;outline:none}textarea{color:#1d1d1d;color:var(--form-text);background-color:#efefef;background-color:var(--background);font-family:inherit;font-size:inherit;margin-right:6px;margin-bottom:6px;padding:10px;border:none;border-radius:6px;outline:none}select{color:#1d1d1d;color:var(--form-text);background-color:#efefef;background-color:var(--background);font-family:inherit;font-size:inherit;margin-right:6px;margin-bottom:6px;padding:10px;border:none;border-radius:6px;outline:none}button{background-color:#d0cfcf;background-color:var(--button-base);padding-right:30px;padding-left:30px}input[type='submit']{background-color:#d0cfcf;background-color:var(--button-base);padding-right:30px;padding-left:30px}input[type='reset']{background-color:#d0cfcf;background-color:var(--button-base);padding-right:30px;padding-left:30px}input[type='button']{background-color:#d0cfcf;background-color:var(--button-base);padding-right:30px;padding-left:30px}button:hover{background:#9b9b9b;background:var(--button-hover)}input[type='submit']:hover{background:#9b9b9b;background:var(--button-hover)}input[type='reset']:hover{background:#9b9b9b;background:var(--button-hover)}input[type='button']:hover{background:#9b9b9b;background:var(--button-hover)}input[type='color']{min-height:2rem;padding:8px;cursor:pointer}input[type='checkbox'],input[type='radio']{height:1em;width:1em}input[type='radio']{border-radius:100%}input{vertical-align:top}label{vertical-align:middle;margin-bottom:4px;display:inline-block}input:not([type='checkbox']):not([type='radio']),input[type='range'],select,button,textarea{-webkit-appearance:none}textarea{display:block;margin-right:0;box-sizing:border-box;resize:vertical}textarea:not([cols]){width:100%}textarea:not([rows]){min-height:40px;height:140px}select{background:#efefef url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='utf-8'?%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' height='62.5' width='116.9' fill='%23161f27'%3E %3Cpath d='M115.3,1.6 C113.7,0 111.1,0 109.5,1.6 L58.5,52.7 L7.4,1.6 C5.8,0 3.2,0 1.6,1.6 C0,3.2 0,5.8 1.6,7.4 L55.5,61.3 C56.3,62.1 57.3,62.5 58.4,62.5 C59.4,62.5 60.5,62.1 61.3,61.3 L115.2,7.4 C116.9,5.8 116.9,3.2 115.3,1.6Z'/%3E %3C/svg%3E") calc(100% - 12px) 50%/12px no-repeat;background:var(--background) var(--select-arrow) calc(100% - 12px) 50%/12px no-repeat;padding-right:35px}select::-ms-expand{display:none}select[multiple]{padding-right:10px;background-image:none;overflow-y:auto}input:focus{box-shadow:0 0 0 2px #0096bfab;box-shadow:0 0 0 2px var(--focus)}select:focus{box-shadow:0 0 0 2px #0096bfab;box-shadow:0 0 0 2px var(--focus)}button:focus{box-shadow:0 0 0 2px #0096bfab;box-shadow:0 0 0 2px var(--focus)}textarea:focus{box-shadow:0 0 0 2px #0096bfab;box-shadow:0 0 0 2px var(--focus)}input[type='checkbox']:active,input[type='radio']:active,input[type='submit']:active,input[type='reset']:active,input[type='button']:active,input[type='range']:active,button:active{transform:translateY(2px)}input:disabled,select:disabled,button:disabled,textarea:disabled{cursor:not-allowed;opacity:0.5}::-moz-placeholder{color:#949494;color:var(--form-placeholder)}:-ms-input-placeholder{color:#949494;color:var(--form-placeholder)}::-ms-input-placeholder{color:#949494;color:var(--form-placeholder)}::placeholder{color:#949494;color:var(--form-placeholder)}fieldset{border:1px #0096bfab solid;border:1px var(--focus) solid;border-radius:6px;margin:0;margin-bottom:12px;padding:10px}legend{font-size:0.9em;font-weight:600}input[type='range']{margin:10px 0;padding:10px 0;background:transparent}input[type='range']:focus{outline:none}input[type='range']::-webkit-slider-runnable-track{width:100%;height:9.5px;-webkit-transition:0.2s;transition:0.2s;background:#efefef;background:var(--background);border-radius:3px}input[type='range']::-webkit-slider-thumb{box-shadow:0 1px 1px #000, 0 0 1px #0d0d0d;height:20px;width:20px;border-radius:50%;background:#dbdbdb;background:var(--border);-webkit-appearance:none;margin-top:-7px}input[type='range']:focus::-webkit-slider-runnable-track{background:#efefef;background:var(--background)}input[type='range']::-moz-range-track{width:100%;height:9.5px;-moz-transition:0.2s;transition:0.2s;background:#efefef;background:var(--background);border-radius:3px}input[type='range']::-moz-range-thumb{box-shadow:1px 1px 1px #000, 0 0 1px #0d0d0d;height:20px;width:20px;border-radius:50%;background:#dbdbdb;background:var(--border)}input[type='range']::-ms-track{width:100%;height:9.5px;background:transparent;border-color:transparent;border-width:16px 0;color:transparent}input[type='range']::-ms-fill-lower{background:#efefef;background:var(--background);border:0.2px solid #010101;border-radius:3px;box-shadow:1px 1px 1px #000, 0 0 1px #0d0d0d}input[type='range']::-ms-fill-upper{background:#efefef;background:var(--background);border:0.2px solid #010101;border-radius:3px;box-shadow:1px 1px 1px #000, 0 0 1px #0d0d0d}input[type='range']::-ms-thumb{box-shadow:1px 1px 1px #000, 0 0 1px #0d0d0d;border:1px solid #000;height:20px;width:20px;border-radius:50%;background:#dbdbdb;background:var(--border)}input[type='range']:focus::-ms-fill-lower{background:#efefef;background:var(--background)}input[type='range']:focus::-ms-fill-upper{background:#efefef;background:var(--background)}a{text-decoration:none;color:#0076d1;color:var(--links)}a:hover{text-decoration:underline}code{background:#efefef;background:var(--background);color:#000;color:var(--code);padding:2.5px 5px;border-radius:6px;font-size:1em}samp{background:#efefef;background:var(--background);color:#000;color:var(--code);padding:2.5px 5px;border-radius:6px;font-size:1em}time{background:#efefef;background:var(--background);color:#000;color:var(--code);padding:2.5px 5px;border-radius:6px;font-size:1em}pre>code{padding:10px;display:block;overflow-x:auto}var{color:#39a33c;color:var(--variable);font-style:normal;font-family:monospace}kbd{background:#efefef;background:var(--background);border:1px solid #dbdbdb;border:1px solid var(--border);border-radius:2px;color:#363636;color:var(--text-main);padding:2px 4px 2px 4px}img,video{max-width:100%;height:auto}hr{border:none;border-top:1px solid #dbdbdb;border-top:1px solid var(--border)}table{border-collapse:collapse;margin-bottom:10px;width:100%;table-layout:fixed}table caption{text-align:left}td,th{padding:6px;text-align:left;vertical-align:top;word-wrap:break-word}thead{border-bottom:1px solid #dbdbdb;border-bottom:1px solid var(--border)}tfoot{border-top:1px solid #dbdbdb;border-top:1px solid var(--border)}tbody tr:nth-child(even){background-color:#efefef;background-color:var(--background)}tbody tr:nth-child(even) button{background-color:#f7f7f7;background-color:var(--background-alt)}tbody tr:nth-child(even) button:hover{background-color:#fff;background-color:var(--background-body)}::-webkit-scrollbar{height:10px;width:10px}::-webkit-scrollbar-track{background:#efefef;background:var(--background);border-radius:6px}::-webkit-scrollbar-thumb{background:#aaa;background:var(--scrollbar-thumb);border-radius:6px}::-webkit-scrollbar-thumb:hover{background:#9b9b9b;background:var(--scrollbar-thumb-hover)}::-moz-selection{background-color:#9e9e9e;background-color:var(--selection);color:#000;color:var(--text-bright)}::selection{background-color:#9e9e9e;background-color:var(--selection);color:#000;color:var(--text-bright)}details{display:flex;flex-direction:column;align-items:flex-start;background-color:#f7f7f7;background-color:var(--background-alt);padding:10px 10px 0;margin:1em 0;border-radius:6px;overflow:hidden}details[open]{padding:10px}details>:last-child{margin-bottom:0}details[open] summary{margin-bottom:10px}summary{display:list-item;background-color:#efefef;background-color:var(--background);padding:10px;margin:-10px -10px 0;cursor:pointer;outline:none}summary:hover,summary:focus{text-decoration:underline}details>:not(summary){margin-top:0}summary::-webkit-details-marker{color:#363636;color:var(--text-main)}dialog{background-color:#f7f7f7;background-color:var(--background-alt);color:#363636;color:var(--text-main);border:none;border-radius:6px;border-color:#dbdbdb;border-color:var(--border);padding:10px 30px}dialog>header:first-child{background-color:#efefef;background-color:var(--background);border-radius:6px 6px 0 0;margin:-10px -30px 10px;padding:10px;text-align:center}dialog::-webkit-backdrop{background:#0000009c;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}dialog::backdrop{background:#0000009c;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}footer{border-top:1px solid #dbdbdb;border-top:1px solid var(--border);padding-top:10px;color:#70777f;color:var(--text-muted)}body>footer{margin-top:40px}@media print{body,pre,code,summary,details,button,input,textarea{background-color:#fff}button,input,textarea{border:1px solid #000}body,h1,h2,h3,h4,h5,h6,pre,code,button,input,textarea,footer,summary,strong{color:#000}summary::marker{color:#000}summary::-webkit-details-marker{color:#000}tbody tr:nth-child(even){background-color:#f2f2f2}a{color:#00f;text-decoration:underline}}code{padding:2px;border-radius:unset}pre{overflow-x:auto;background-color:unset;border:solid #aaa 1px;padding:8px}pre>code{white-space:pre;overflow:visible;background-color:unset;padding:0}pre.numberSource{margin:0;padding-left:0}div.sourceCode{overflow:visible}pre.sourceCode{overflow-x:auto}pre.sourceCode.numberSource{overflow-x:visible}pre.sourceCode.numberSource>code{white-space:pre-wrap}pre.sourceCode.numberSource>span{left:8px;text-indent:-4.6em}.chunk-summary{text-align:right}.chunk-summary+pre,.chunk-summary+div.sourceCode{margin-top:2px}nav[role="doc-toc"]>ul{border:.0625rem solid #444;border-radius:4px;margin:5px;padding:5px}nav[role="doc-toc"] ul{list-style-type:none;padding-inline-start:1rem}nav[role="doc-toc"] ul li{padding:0}nav[role="doc-toc"] ul ul{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}nav[role="doc-toc"] code{background-color:unset;color:unset}@media screen and (max-width: 960px){header,nav,article{padding:0 3rem}}nav[role="doc-toc"]{font-size:0.9em;border:none}nav[role="doc-toc"]>ul{box-sizing:border-box}nav[role="doc-toc"] ul{margin:0}nav[role="doc-toc"] li,nav[role="doc-toc"] a{margin:0;padding:0}.tooltip{position:relative;display:inline-block}.tooltip:before,.tooltip:after{position:absolute;opacity:0;clip:rect(0 0 0 0);-webkit-clip-path:inset(100%);clip-path:inset(100%);transition:all 0.3s;z-index:1010;left:50%}.tooltip:not(.bottom):before,.tooltip:not(.bottom):after{bottom:75%}.tooltip.bottom:before,.tooltip.bottom:after{top:75%}.tooltip:hover:before,.tooltip:hover:after,.tooltip:focus:before,.tooltip:focus:after{opacity:1;clip:auto;-webkit-clip-path:inset(0%);clip-path:inset(0%)}.tooltip:before{content:'';background:transparent;border:0.5rem solid transparent;left:calc(50% - 0.5rem)}.tooltip:not(.bottom):before{border-top-color:#212121}.tooltip.bottom:before{border-bottom-color:#212121}.tooltip:after{content:attr(aria-label);color:#fafafa;background:#212121;border-radius:0.125rem;padding:0.5rem;white-space:nowrap;transform:translateX(-50%)}.tooltip:not(.bottom):after{margin-bottom:1rem}.tooltip.bottom:after{margin-top:1rem}:root{--toc-width: 300px}@media screen and (min-width: 960px){body{max-width:100vw;margin:0;padding:0}main{display:grid;grid-template-columns:var(--toc-width) 1fr;grid-template-rows:auto auto}nav[role="doc-toc"]{grid-row:1 / -1;grid-column:1 / 2;border:none;margin:0;width:var(--toc-width)}nav[role="doc-toc"]>ul{padding-top:0;padding-bottom:0;position:sticky;max-height:100vh;overflow-y:auto;top:0;border:none}nav[role="doc-toc"]>ul>li:first-child{padding-top:0.5rem}}@media screen and (min-width: 960px) and (max-width: 1260px){main{width:calc(100vw - 2rem)}header,article{width:calc(100vw - var(--toc-width) - 6rem);padding:0 0 0 4rem}}@media screen and (min-width: 1260px){main{width:calc(1260px - 2rem);margin:0 calc(50vw - 480px) 0 auto}header,article{width:calc(960px - 6rem);padding:0 0 0 4rem}}
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" data-external="1"></head>
+<body>
+<aside style="text-align:right">
+  <a href="data:text/x-markdown;base64,LS0tCnRpdGxlOiAiUlN0dWRpb+OCpOODoeODvOOCuOaknOiovCIKZGF0ZTogImByIFN5cy5EYXRlKClgIgpvdXRwdXQ6IAogIG1pbmlkb3duOjptaW5pX2RvY3VtZW50OgogICAgZnJhbWV3b3JrOiB3YXRlcgogICAgdGhlbWU6IGxpZ2h0CiAgICBoaWdobGlnaHQ6IGhhZGRvY2sKICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6IHRydWUKICAgIGRmX3ByaW50OiBrYWJsZQogICAgY29kZV9mb2xkaW5nOiBoaWRlCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0KbGlicmFyeSh0aWR5dmVyc2UpCgojIOODrOODneODvOODiOWFqOS9k+OBruWFsemAmuioreWumgprbml0cjo6b3B0c19jaHVuayRzZXQoCiAgY29tbWVudCA9IE5BLAogIHRpZHkgICAgPSBUUlVFLAogIGVjaG8gICAgPSBUUlVFLAogIHdhcm5pbmcgPSBGQUxTRSwKICBtZXNzYWdlID0gRkFMU0UKKQpgYGAKCmBgYHtjc3MsIGVjaG8gPSBGQUxTRX0KLyog44K/44Kk44OI44Or6YOo5YiGICovCmRpdiNoZWFkZXIsCmhlYWRlciN0aXRsZS1ibG9jay1oZWFkZXIgewogIGJvcmRlci1ib3R0b206IHNvbGlkIDVweCAjNDQ0OwogIG1hcmdpbi1ib3R0b206IDFlbTsKfQoKLyog6KaL5Ye644GX44Os44OZ44OrMiAoIyMpICovCmgyIHsKICBib3JkZXItYm90dG9tOiBzb2xpZCAzcHggI2NjYzsKfQpkaXYubGV2ZWwyIHsKICBtYXJnaW4tdG9wOiAxZW07Cn0KCi8qIOWNsOWIt+eUqOOBruioreWumiAqLwpAbWVkaWEgcHJpbnQgewogIC8qIOWNsOWIt+aZguOBruihqOOBruaUueODmuODvOOCuOmWouS/giAqLwogIHRoZWFkIHsKICAgICAgZGlzcGxheTogdGFibGUtaGVhZGVyLWdyb3VwOwogIH0KCiAgLyog5Y2w5Yi35pmC44Gr44Oq44Oz44Kv44Gu5b6M44KN44GrVVJM44KS5LuY44GR44Gq44GEICovCiAgYVtocmVmXTphZnRlciB7CiAgICBjb250ZW50OiAiIjsKICB9CgogIC8qIOWNsOWIt+aZguOBqyBbQ29kZV0g44KEW1NvdXJjZV0g44Gu44Oc44K/44Oz44KS5raI44GZICAqLwogIGJ1dHRvbi5jb2RlLWZvbGRpbmctYnRuLAogIGRldGFpbHMuY2h1bmstZGV0YWlscyAgewogICAgZGlzcGxheTogbm9uZTsKICB9CiAgCiAgLyog55uu5qyh44Gv5Y2w5Yi344GX44Gq44GEICovCiAgI1RPQyB7CiAgICBkaXNwbGF5OiBub25lOwogIH0KCn0KYGBgCgojIyBNZW1vCgo8Zm9ybT4KPHRleHRhcmVhIGNsYXNzPSJmb3JtLWNvbnRyb2wiIHJvd3M9IjUiPgrjgJDmpJzoqLzogIXjgJEK44CQSG9zdCBPU+OAkQrjgJBEb2NrZXIgdmVyc2lvbuOAkQrjgJDlgpnogIPjgJEKPC90ZXh0YXJlYT4KPC9mb3JtPgoKCiMjIFBsYXRmb3JtIEluZm8KCmBgYHtyIHBsYXRmb3JtfQpzZXNzaW9uaW5mbzo6cGxhdGZvcm1faW5mbygpICU+JQogIGltYXBfZGZyKH4gYyhzZXR0aW5nID0gLnksIHZhbHVlID0gLngpKQpgYGAKCioqRGVmYXVsdCBmb250IDoqKiBgciBzeXN0ZW0oImZjLW1hdGNoIiwgaW50ZXJuID0gVFJVRSlgCgpcbmV3cGFnZQoKIyMgUGFja2FnZSBJbmZvCgpgYGB7ciBjaGtfcGFja2FnZV9sb2FkLCBjYWNoZSA9IFRSVUV9CiMg6ZaL5aeL5pmC44Gr6Kqt44G/6L6844G+44KM44Gm44GE44KL44OR44OD44Kx44O844K444Gu44Oq44K544OICmJhc2VfbGlzdCA8LSBzZWFyY2goKQoKIyDjg5Hjg4PjgrHjg7zjgrjjga7jg63jg7zjg4njgpLoqabjgb/jgabntZDmnpzjgpLov5TjgZnplqLmlbAKZnVuX2Noa19wYWNrYWdlX2xvYWQgPC0gZnVuY3Rpb24ocGtnKSB7CiAgdGVtcCA8LSB0cnlDYXRjaCgKICAgICMg5qW15Yqb44Oh44OD44K744O844K444GM6KGo56S644GV44KM44Gq44GE44KI44GG44Gr44OR44OD44Kx44O844K444KS6Kqt44G/6L6844KACiAgICBzdXBwcmVzc01lc3NhZ2VzKAogICAgICBsaWJyYXJ5KHBrZywgY2hhcmFjdGVyLm9ubHkgPSBUUlVFLCBxdWlldGx5ID0gVFJVRSkKICAgICksCiAgICAjIFdhcm5pbmcsIEVycm9yIOOBruWgtOWQiOOBr+OBneOBruWGheWuueOCkui/lOOBmeOAguaUueihjOOBr+OCueODmuODvOOCueOBq+e9ruaPmwogICAgd2FybmluZyA9IGZ1bmN0aW9uKHcpIHsKICAgICAgcmV0dXJuKGMoIldhcm5pbmciLCBnc3ViKCJcbiIsICIgIiwgdyRtZXNzYWdlKSkpCiAgICB9LAogICAgZXJyb3IgPSBmdW5jdGlvbihlKSB7CiAgICAgIHJldHVybihjKCJFcnJvciIsICAgZ3N1YigiXG4iLCAiICIsIGUkbWVzc2FnZSkpKQogICAgfQogICkKCiAgIyDliJ3mnJ/nirbmhYvjgajmr5TovIPjgZfjgabjgIHmlrDjgZfjgY/jg63jg7zjg4njgZXjgozjgZ/jgoLjga7jgpIgZGV0YWNoKCkg44GZ44KLCiAgc2FwcGx5KHNldGRpZmYoc2VhcmNoKCksIGJhc2VfbGlzdCksCiAgICBmdW5jdGlvbihwKSBkZXRhY2gocG9zID0gbWF0Y2gocCwgc2VhcmNoKCkpKSkKCiAgIyDjg5Hjg4PjgrHjg7zjgrjjga7jg63jg7zjg4nmiJDlip/jga7loLTlkIjjga8gIm9rIuOAgeWkseaVl+aZguOBr+OCqOODqeODvOODoeODg+OCu+ODvOOCuOOCkui/lOOBmQogIGlmIChwa2cgJWluJSB0ZW1wKSB7CiAgICByZXR1cm4oYyhyZXN1bHQgPSAib2siLCAgICBtZXNzYWdlID0gIi0iKSkKICB9IGVsc2UgewogICAgcmV0dXJuKGMocmVzdWx0ID0gdGVtcFsxXSwgbWVzc2FnZSA9IHRlbXBbMl0pKQogIH0KfQoKIyDjgqTjg7Pjgrnjg4jjg7zjg6vjgZXjgozjgabjgYTjgovlhajjg5Hjg4PjgrHjg7zjgrjjgavjgaTjgYTjgabjg4bjgrnjg4gKcmVzX2RmIDwtIC5wYWNrYWdlcyhhbGwuYXZhaWxhYmxlID0gVFJVRSkgJT4lCiAgc2Vzc2lvbmluZm86OnBhY2thZ2VfaW5mbyhwa2dzID0gLiwgaW5jbHVkZV9iYXNlID0gVFJVRSkgJT4lCiAgYXNfdGliYmxlKCkgJT4lCiAgc2VsZWN0KHBhY2thZ2UsIG9uZGlza3ZlcnNpb24sIGRhdGUsIHNvdXJjZSkgJT4lCiAgbXV0YXRlKAogICAgY2hrX2xvYWRpbmcgPSBtYXAocGFja2FnZSwgfiBkby5jYWxsKHdoYXQgPSBmdW5fY2hrX3BhY2thZ2VfbG9hZCwgYXJncyA9IGxpc3QocGtnID0gLikpKSwKICAgIHJlc3VsdCAgICAgID0gbWFwX2NocihjaGtfbG9hZGluZywgfiAuWzFdKSwKICAgIHJlc3VsdCAgICAgID0gZmN0X3JlbGV2ZWwocmVzdWx0LCBjKCJFcnJvciIsICJXYXJuaW5nIiwgIm9rIikpLAogICAgbWVzc2FnZSAgICAgPSBtYXBfY2hyKGNoa19sb2FkaW5nLCB+IC5bMl0pCiAgKSAlPiUKICBzZWxlY3QoLWNoa19sb2FkaW5nKQpgYGAKCmBgYHtyIHNhdmVfY3N2LCBldmFsID0gRkFMU0UsIGluY2x1ZGUgPSBGQUxTRX0KIyDkv53lrZgKcmVzX2RmICU+JQogICMg5Lim44G55pu/44GICiAgYXJyYW5nZShyZXN1bHQsIHBhY2thZ2UpICU+JQogICMg5paH5a2X5YyW44GR5a++562WCiAgbXV0YXRlKAogICAgbWVzc2FnZSA9IHN0cl9yZXBsYWNlX2FsbChtZXNzYWdlLCAiKOKAmHzigJkpIiwgIiciKQogICkgJT4lCiAgIyDlh7rlipsKICB3cml0ZS5jc3YoCiAgICBmaWxlID0gIn4vbGlicmFyeV90ZXN0LmNzdiIsCiAgICBxdW90ZSA9IFRSVUUsIGZpbGVFbmNvZGluZyA9ICJjcDkzMiIKICApCmBgYAoKIyMjIOiqreOBv+i+vOOBv+aZgiBFcnJvciAoYHIgc3VtKHJlc19kZiRyZXN1bHQgPT0gIkVycm9yIilgKQoKYGBge3IgcGtnX3dfZXJyb3J9CnJlc19kZiAlPiUKICBmaWx0ZXIocmVzdWx0ID09ICJFcnJvciIpICU+JQogIHNlbGVjdChwYWNrYWdlLCBtZXNzYWdlKSAlPiUKICBrbml0cjo6a2FibGUoZm9ybWF0ID0gInNpbXBsZSIpCiMga25pdHI6OmthYmxlKGNvbC5uYW1lcyA9IGMoInBhY2thZ2VfbmFtZSIsICIiKSkKYGBgCgojIyMg6Kqt44G/6L6844G/5pmCIFdhcm5pbmcgKGByIHN1bShyZXNfZGYkcmVzdWx0ID09ICJXYXJuaW5nIilgKQoKYGBge3IgcGtnX3dfd2Fybn0KcmVzX2RmICU+JQogIGZpbHRlcihyZXN1bHQgPT0gIldhcm5pbmciKSAlPiUKICBzZWxlY3QocGFja2FnZSwgbWVzc2FnZSkgJT4lCiAga25pdHI6OmthYmxlKGZvcm1hdCA9ICJzaW1wbGUiKQojIGtuaXRyOjprYWJsZShjb2wubmFtZXMgPSBjKCJwYWNrYWdlX25hbWUiLCAiIikpCmBgYAoKIyMjIOOCpOODs+OCueODiOODvOODq+a4iOOBmeOBueOBpiAoYHIgbnJvdyhyZXNfZGYpYCkKCmBgYHtyIHBrZ192ZXJzaW9ufQpyZXNfZGYgJT4lCiAgc2VsZWN0KHBhY2thZ2UsIG9uZGlza3ZlcnNpb24sIGRhdGUsIHNvdXJjZSkgJT4lCiAga25pdHI6OmthYmxlKGZvcm1hdCA9ICJzaW1wbGUiKQpgYGAKClxuZXdwYWdlCgojIyBUaW55VGVYCgpgYGB7ciB0aW55dGV4LCByZXN1bHRzID0gImFzaXMifQppZiAoInRpbnl0ZXgiICVpbiUgLnBhY2thZ2VzKGFsbC5hdmFpbGFibGUgPSBUUlVFKSkgewogIHRyeUNhdGNoKAogICAgewogICAgICB0aW55dGV4Ojp0bG1ncigidmVyc2lvbiIsIHN0ZG91dCA9IFRSVUUpICU+JQogICAgICAgIHBhc3RlKGNvbGxhcHNlID0gIlxuIikgJT4lCiAgICAgICAgcGFzdGUodGlueXRleDo6dGxtZ3JfcmVwbyhzdGRvdXQgPSBUUlVFKSwgc2VwID0gIlxuXG4iKSAlPiUKICAgICAgICBwYXN0ZSgiIiwgImBgYCIsIC4sICJgYGAiLCBzZXAgPSAiXG4iKSAlPiUgCiAgICAgICAgYXBwZW5kKCIqKnt0aW55dGV4fSDjg5Hjg4PjgrHjg7zjgrjjga7jgqTjg7Pjgrnjg4jjg7zjg6vjgYzlrozkuobjgZfjgabjgYTjgb7jgZnjgIIqKjxicj4iLCAuKSAlPiUKICAgICAgICBjYXQoKQogICAgfSwKICAgIHdhcm5pbmcgPSBmdW5jdGlvbih3KSB7CiAgICAgIGNhdCgiKip7dGlueXRleH0g44OR44OD44Kx44O844K444Gv44GC44KK44G+44GZ44GM44CB44Kk44Oz44K544OI44O844Or44GM5a6M5LqG44GX44Gm44GE44G+44Gb44KT44CCKioiKQogICAgICAjIHJldHVybihnc3ViKCdcXG4nLCAnJywgdyRtZXNzYWdlKSkKICAgIH0KICApCn0gZWxzZSB7CiAgY2F0KCIqKnt0aW55dGV4fSDjg5Hjg4PjgrHjg7zjgrjjgYzjgYLjgorjgb7jgZvjgpPjgIIqKiIpCn0KYGBgCgojIyMg44Kk44Oz44K544OI44O844Or5riI44GuVGVY44OR44OD44Kx44O844K4CiAgICAgIApgYGB7ciB0aW55dGV4X3BhY2thZ2VzfQppZiAoInRpbnl0ZXgiICVpbiUgLnBhY2thZ2VzKGFsbC5hdmFpbGFibGUgPSBUUlVFKSkgewogIHRyeUNhdGNoKAogICAgewogICAgICB0aW55dGV4Ojp0bG1ncigibGlzdCAtLW9ubHktaW5zdGFsbGVkIiwgc3Rkb3V0ID0gVFJVRSkgJT4lCiAgICAgICAgdGliYmxlKHBsaXN0ID0gLikgJT4lCiAgICAgICAgbXV0YXRlKAogICAgICAgICAgcGFja2FnZSAgICAgPSBtYXBfY2hyKHBsaXN0LCB+IGdzdWIoIl5pXCAoW146XSspOi4qIiwgIlxcMSIsIC4pKSwKICAgICAgICAgIGRlc2NyaXB0aW9uID0gbWFwX2NocihwbGlzdCwgfiBnc3ViKCJeaVwgLis6XCAoLispIiwgICJcXDEiLCAuKSkKICAgICAgICApICU+JQogICAgICAgIHNlbGVjdCgtcGxpc3QpICU+JQogICAgICAgIGtuaXRyOjprYWJsZShmb3JtYXQgPSAic2ltcGxlIikKICAgIH0sCiAgICB3YXJuaW5nID0gZnVuY3Rpb24odykgewogICAgICByZXR1cm4oZ3N1YigiXFxuIiwgIiIsIHckbWVzc2FnZSkpCiAgICB9CiAgKQp9CmBgYAoKXG5ld3BhZ2UKCiMjIFB5dGhvbiAmIHtyZXRpY3VsYXRlfQoKYGBge3IgY2hrX3JldGljdWxhdGUsIHJlc3VsdHMgPSAiYXNpcyJ9CmlmICgicmV0aWN1bGF0ZSIgJWluJSAucGFja2FnZXMoYWxsLmF2YWlsYWJsZSA9IFRSVUUpKSB7CiAgY2F0KCIqKntyZXRpY3VsYXRlfSDjgYzjgqTjg7Pjgrnjg4jjg7zjg6vjgZXjgozjgabjgYTjgb7jgZnjgIIqKlxuIikKCiAgcmV0aWN1bGF0ZTo6cHlfY29uZmlnKCkgJT4lCiAgICBjYXB0dXJlLm91dHB1dCgpICU+JQogICAgcGFzdGUoY29sbGFwc2UgPSAiXG4iKSAlPiUKICAgIHBhc3RlKCJgYGAiLCAuLCAiYGBgIiwgc2VwID0gIlxuIikgJT4lCiAgICBjYXQoKQp9IGVsc2UgewogIGNhdCgiKip7cmV0aWN1bGF0ZX0g44GM44Kk44Oz44K544OI44O844Or44GV44KM44Gm44GE44G+44Gb44KT44CCKioiKQogIGNhdCgiPGJyPjxicj7jgrfjgrnjg4bjg6Djga5weXRob27jga88YnI+IikKICB0cnlDYXRjaCgKICAgIHsKICAgICAgc3lzdGVtKCJweXRob24gLS12ZXJzaW9uICYmIHdoaWNoIHB5dGhvbiIsIGludGVybiA9IFRSVUUpICU+JQogICAgICAgIHBhc3RlKGNvbGxhcHNlID0gIlxuIikgJT4lCiAgICAgICAgcGFzdGUoIiIsICJgYGAiLCAuLCAiYGBgIiwgc2VwID0gIlxuIikgJT4lCiAgICAgICAgY2F0KCkKICAgIH0sCiAgICB3YXJuaW5nID0gZnVuY3Rpb24odykgewogICAgICBwYXN0ZSgiIiwgImBgYCIsIHckbWVzc2FnZSwgImBgYCIsIHNlcCA9ICJcbiIpICU+JSBjYXQoKQogICAgfSwKICAgIGVycm9yICAgPSBmdW5jdGlvbihlKSB7CiAgICAgIHBhc3RlKCIiLCAiYGBgIiwgZSRtZXNzYWdlLCAiYGBgIiwgc2VwID0gIlxuIikgJT4lIGNhdCgpCiAgICB9KQp9CmBgYAoKIyMjIHBpcCBsaXN0IC0tZnJlZXplCgpgYGB7ciBjaGtfcGlwX3BrZ3MsIHJlc3VsdHMgPSAiYXNpcyJ9CnRyeUNhdGNoKAogIHsKICAgIHN5c3RlbSgicHl0aG9uIC1tIHBpcCBsaXN0IC1mcmVlemUiLCBpbnRlcm4gPSBUUlVFKSAlPiUKICAgICAgcGFzdGUoY29sbGFwc2UgPSAiXG4iKSAlPiUKICAgICAgY2F0KCkKICB9LAogIHdhcm5pbmcgPSBmdW5jdGlvbih3KSB7CiAgICB3JG1lc3NhZ2UKICB9LAogIGVycm9yICAgPSBmdW5jdGlvbihlKSB7CiAgICBlJG1lc3NhZ2UKICB9KQpgYGAK" download="Image_test_mini.Rmd" class="button">Download Rmd</a>
+</aside>
+<main>
+<header id="title-block-header">
+<h1 class="title">RStudio&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x691C;&#x8A3C;</h1>
+<p class="date">2024-05-06</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#memo" id="toc-memo">Memo</a></li>
+<li><a href="#platform-info" id="toc-platform-info">Platform
+Info</a></li>
+<li><a href="#package-info" id="toc-package-info">Package Info</a>
+<ul>
+<li><a href="#&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642;-error-0" id="toc-&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642;-error-0">&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642;
+Error (0)</a></li>
+<li><a href="#&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642;-warning-3" id="toc-&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642;-warning-3">&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642; Warning (3)</a></li>
+<li><a href="#&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x3059;&#x3079;&#x3066;-290" id="toc-&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x3059;&#x3079;&#x3066;-290">&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x3059;&#x3079;&#x3066; (290)</a></li>
+</ul></li>
+<li><a href="#tinytex" id="toc-tinytex">TinyTeX</a>
+<ul>
+<li><a href="#&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x306E;tex&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;" id="toc-&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x306E;tex&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;">&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x306E;TeX&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;</a></li>
+</ul></li>
+<li><a href="#python-reticulate" id="toc-python-reticulate">Python &amp;
+{reticulate}</a>
+<ul>
+<li><a href="#pip-list-freeze" id="toc-pip-list-freeze">pip list
+&#x2013;freeze</a></li>
+</ul></li>
+</ul>
+</nav>
+<article>
+<style type="text/css">
+
+div#header,
+header#title-block-header {
+border-bottom: solid 5px #444;
+margin-bottom: 1em;
+}
+
+h2 {
+border-bottom: solid 3px #ccc;
+}
+div.level2 {
+margin-top: 1em;
+}
+
+@media print {
+
+thead {
+display: table-header-group;
+}
+
+a[href]:after {
+content: "";
+}
+
+button.code-folding-btn,
+details.chunk-details {
+display: none;
+}
+
+#TOC {
+display: none;
+}
+}
+</style>
+<section id="memo" class="level2">
+<h2>Memo</h2>
+<form>
+<textarea class="form-control" rows="5">
+&#x3010;&#x691C;&#x8A3C;&#x8005;&#x3011;
+&#x3010;Host OS&#x3011;
+&#x3010;Docker version&#x3011;
+&#x3010;&#x5099;&#x8003;&#x3011;
+</textarea>
+</form>
+</section>
+<section id="platform-info" class="level2">
+<h2>Platform Info</h2>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb1" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">platform_info</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imap_dfr</span>(<span class="sc">~</span> <span class="fu">c</span>(<span class="at">setting =</span> .y, <span class="at">value =</span> .x))</span></code></pre></div>
+</details>
+<div class="kable-table">
+<table>
+<colgroup>
+<col style="width: 11%">
+<col style="width: 88%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">setting</th>
+<th style="text-align: left;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">version</td>
+<td style="text-align: left;">R version 4.3.3 (2024-02-29)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">os</td>
+<td style="text-align: left;">Ubuntu 22.04.4 LTS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">system</td>
+<td style="text-align: left;">x86_64, linux-gnu</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ui</td>
+<td style="text-align: left;">X11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">language</td>
+<td style="text-align: left;">(EN)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">collate</td>
+<td style="text-align: left;">ja_JP.UTF-8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ctype</td>
+<td style="text-align: left;">ja_JP.UTF-8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tz</td>
+<td style="text-align: left;">Asia/Tokyo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">2024-05-06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pandoc</td>
+<td style="text-align: left;">3.1.1 @
+/usr/lib/rstudio-server/bin/quarto/bin/tools/ (via rmarkdown)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Default font :</strong> NotoSansJP-Regular.otf: &#x201C;Noto Sans
+JP&#x201D; &#x201C;Regular&#x201D;</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="package-info" class="level2">
+<h2>Package Info</h2>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb2" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &#x958B;&#x59CB;&#x6642;&#x306B;&#x8AAD;&#x307F;&#x8FBC;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x30EA;&#x30B9;&#x30C8;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>base_list <span class="ot">&lt;-</span> <span class="fu">search</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x3092;&#x8A66;&#x307F;&#x3066;&#x7D50;&#x679C;&#x3092;&#x8FD4;&#x3059;&#x95A2;&#x6570;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fun_chk_package_load <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># &#x6975;&#x529B;&#x30E1;&#x30C3;&#x30BB;&#x30FC;&#x30B8;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3080;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">suppressMessages</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">library</span>(pkg, <span class="at">character.only =</span> <span class="cn">TRUE</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Warning, Error &#x306E;&#x5834;&#x5408;&#x306F;&#x305D;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x8FD4;&#x3059;&#x3002;&#x6539;&#x884C;&#x306F;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x306B;&#x7F6E;&#x63DB;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">c</span>(<span class="st">&quot;Warning&quot;</span>, <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot; &quot;</span>, w<span class="sc">$</span>message)))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">c</span>(<span class="st">&quot;Error&quot;</span>,   <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot; &quot;</span>, e<span class="sc">$</span>message)))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &#x521D;&#x671F;&#x72B6;&#x614B;&#x3068;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x3001;&#x65B0;&#x3057;&#x304F;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x308C;&#x305F;&#x3082;&#x306E;&#x3092; detach() &#x3059;&#x308B;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(<span class="fu">setdiff</span>(<span class="fu">search</span>(), base_list),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(p) <span class="fu">detach</span>(<span class="at">pos =</span> <span class="fu">match</span>(p, <span class="fu">search</span>())))</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x6210;&#x529F;&#x306E;&#x5834;&#x5408;&#x306F; &quot;ok&quot;&#x3001;&#x5931;&#x6557;&#x6642;&#x306F;&#x30A8;&#x30E9;&#x30FC;&#x30E1;&#x30C3;&#x30BB;&#x30FC;&#x30B8;&#x3092;&#x8FD4;&#x3059;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (pkg <span class="sc">%in%</span> temp) {</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">c</span>(<span class="at">result =</span> <span class="st">&quot;ok&quot;</span>,    <span class="at">message =</span> <span class="st">&quot;-&quot;</span>))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">c</span>(<span class="at">result =</span> temp[<span class="dv">1</span>], <span class="at">message =</span> temp[<span class="dv">2</span>]))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># &#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5168;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306B;&#x3064;&#x3044;&#x3066;&#x30C6;&#x30B9;&#x30C8;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>res_df <span class="ot">&lt;-</span> <span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  sessioninfo<span class="sc">::</span><span class="fu">package_info</span>(<span class="at">pkgs =</span> ., <span class="at">include_base =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(package, ondiskversion, date, source) <span class="sc">%&gt;%</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">chk_loading =</span> <span class="fu">map</span>(package, <span class="sc">~</span> <span class="fu">do.call</span>(<span class="at">what =</span> fun_chk_package_load, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">pkg =</span> .))),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">result      =</span> <span class="fu">map_chr</span>(chk_loading, <span class="sc">~</span> .[<span class="dv">1</span>]),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">result      =</span> <span class="fu">fct_relevel</span>(result, <span class="fu">c</span>(<span class="st">&quot;Error&quot;</span>, <span class="st">&quot;Warning&quot;</span>, <span class="st">&quot;ok&quot;</span>)),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">message     =</span> <span class="fu">map_chr</span>(chk_loading, <span class="sc">~</span> .[<span class="dv">2</span>])</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>chk_loading)</span></code></pre></div>
+</details>
+<section id="&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642;-error-0" class="level3">
+<h3>&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642; Error (0)</h3>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb3" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>res_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(result <span class="sc">==</span> <span class="st">&quot;Error&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(package, message) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">&quot;simple&quot;</span>)</span></code></pre></div>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">package</th>
+<th style="text-align: left;">message</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb4" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># knitr::kable(col.names = c(&quot;package_name&quot;, &quot;&quot;))</span></span></code></pre></div>
+</details>
+</section>
+<section id="&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642;-warning-3" class="level3">
+<h3>&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x6642; Warning (3)</h3>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb5" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>res_df <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(result <span class="sc">==</span> <span class="st">&quot;Warning&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(package, message) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">&quot;simple&quot;</span>)</span></code></pre></div>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">package</th>
+<th style="text-align: left;">message</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">export</td>
+<td style="text-align: left;">RGL: unable to open X11 display</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rgl</td>
+<td style="text-align: left;">RGL: unable to open X11 display</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tcltk</td>
+<td style="text-align: left;">couldn&#x2019;t connect to display &#x201C;:0&#x201D;</td>
+</tr>
+</tbody>
+</table>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb6" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># knitr::kable(col.names = c(&quot;package_name&quot;, &quot;&quot;))</span></span></code></pre></div>
+</details>
+</section>
+<section id="&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x3059;&#x3079;&#x3066;-290" class="level3">
+<h3>&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x3059;&#x3079;&#x3066; (290)</h3>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb7" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>res_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(package, ondiskversion, date, source) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">&quot;simple&quot;</span>)</span></code></pre></div>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">package</th>
+<th style="text-align: left;">ondiskversion</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">abind</td>
+<td style="text-align: left;">1.4-5</td>
+<td style="text-align: left;">2016-07-21</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">askpass</td>
+<td style="text-align: left;">1.2.0</td>
+<td style="text-align: left;">2023-09-03</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">backports</td>
+<td style="text-align: left;">1.4.1</td>
+<td style="text-align: left;">2021-12-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">base64enc</td>
+<td style="text-align: left;">0.1-3</td>
+<td style="text-align: left;">2015-07-28</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bigD</td>
+<td style="text-align: left;">0.2.0</td>
+<td style="text-align: left;">2022-09-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BiocManager</td>
+<td style="text-align: left;">1.30.22</td>
+<td style="text-align: left;">2023-08-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bit</td>
+<td style="text-align: left;">4.0.5</td>
+<td style="text-align: left;">2022-11-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bit64</td>
+<td style="text-align: left;">4.0.5</td>
+<td style="text-align: left;">2020-08-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bitops</td>
+<td style="text-align: left;">1.0-7</td>
+<td style="text-align: left;">2021-04-24</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">blob</td>
+<td style="text-align: left;">1.2.4</td>
+<td style="text-align: left;">2023-03-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">boot</td>
+<td style="text-align: left;">1.3-30</td>
+<td style="text-align: left;">2024-02-26</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">brew</td>
+<td style="text-align: left;">1.0-10</td>
+<td style="text-align: left;">2023-12-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">brio</td>
+<td style="text-align: left;">1.1.4</td>
+<td style="text-align: left;">2023-12-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">broom</td>
+<td style="text-align: left;">1.0.5</td>
+<td style="text-align: left;">2023-06-09</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">broom.helpers</td>
+<td style="text-align: left;">1.15.0</td>
+<td style="text-align: left;">2024-04-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bslib</td>
+<td style="text-align: left;">0.7.0</td>
+<td style="text-align: left;">2024-03-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cachem</td>
+<td style="text-align: left;">1.0.8</td>
+<td style="text-align: left;">2023-05-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">callr</td>
+<td style="text-align: left;">3.7.6</td>
+<td style="text-align: left;">2024-03-25</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">car</td>
+<td style="text-align: left;">3.1-2</td>
+<td style="text-align: left;">2023-03-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">carData</td>
+<td style="text-align: left;">3.0-5</td>
+<td style="text-align: left;">2022-01-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cellranger</td>
+<td style="text-align: left;">1.1.0</td>
+<td style="text-align: left;">2016-07-27</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">class</td>
+<td style="text-align: left;">7.3-22</td>
+<td style="text-align: left;">2023-05-03</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cli</td>
+<td style="text-align: left;">3.6.2</td>
+<td style="text-align: left;">2023-12-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">clipr</td>
+<td style="text-align: left;">0.8.0</td>
+<td style="text-align: left;">2022-02-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">clisymbols</td>
+<td style="text-align: left;">1.2.0</td>
+<td style="text-align: left;">2017-05-21</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cluster</td>
+<td style="text-align: left;">2.1.6</td>
+<td style="text-align: left;">2023-12-01</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cmprsk</td>
+<td style="text-align: left;">2.2-11</td>
+<td style="text-align: left;">2022-01-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">codetools</td>
+<td style="text-align: left;">0.2-20</td>
+<td style="text-align: left;">2024-03-31</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">colorspace</td>
+<td style="text-align: left;">2.1-0</td>
+<td style="text-align: left;">2023-01-23</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">commonmark</td>
+<td style="text-align: left;">1.9.1</td>
+<td style="text-align: left;">2024-01-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">compiler</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">conflicted</td>
+<td style="text-align: left;">1.2.0</td>
+<td style="text-align: left;">2023-02-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">corrplot</td>
+<td style="text-align: left;">0.92</td>
+<td style="text-align: left;">2021-11-18</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cowplot</td>
+<td style="text-align: left;">1.1.3</td>
+<td style="text-align: left;">2024-01-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cpp11</td>
+<td style="text-align: left;">0.4.7</td>
+<td style="text-align: left;">2023-12-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">crayon</td>
+<td style="text-align: left;">1.5.2</td>
+<td style="text-align: left;">2022-09-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">credentials</td>
+<td style="text-align: left;">2.0.1</td>
+<td style="text-align: left;">2023-09-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">crul</td>
+<td style="text-align: left;">1.4.2</td>
+<td style="text-align: left;">2024-04-09</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">curl</td>
+<td style="text-align: left;">5.2.1</td>
+<td style="text-align: left;">2024-03-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data.table</td>
+<td style="text-align: left;">1.15.4</td>
+<td style="text-align: left;">2024-03-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">datasets</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DBI</td>
+<td style="text-align: left;">1.2.2</td>
+<td style="text-align: left;">2024-02-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dbplyr</td>
+<td style="text-align: left;">2.5.0</td>
+<td style="text-align: left;">2024-03-19</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">desc</td>
+<td style="text-align: left;">1.4.3</td>
+<td style="text-align: left;">2023-12-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">devEMF</td>
+<td style="text-align: left;">4.4-2</td>
+<td style="text-align: left;">2024-02-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">devtools</td>
+<td style="text-align: left;">2.4.5</td>
+<td style="text-align: left;">2022-10-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DiagrammeR</td>
+<td style="text-align: left;">1.0.11</td>
+<td style="text-align: left;">2024-02-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">diffobj</td>
+<td style="text-align: left;">0.3.5</td>
+<td style="text-align: left;">2021-10-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">digest</td>
+<td style="text-align: left;">0.6.35</td>
+<td style="text-align: left;">2024-03-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">docopt</td>
+<td style="text-align: left;">0.7.1</td>
+<td style="text-align: left;">2020-06-24</td>
+<td style="text-align: left;">RSPM (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">downlit</td>
+<td style="text-align: left;">0.4.3</td>
+<td style="text-align: left;">2023-06-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">1.1.4</td>
+<td style="text-align: left;">2023-11-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dtplyr</td>
+<td style="text-align: left;">1.3.1</td>
+<td style="text-align: left;">2023-03-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ellipsis</td>
+<td style="text-align: left;">0.3.2</td>
+<td style="text-align: left;">2021-04-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">evaluate</td>
+<td style="text-align: left;">0.23</td>
+<td style="text-align: left;">2023-11-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">exactRankTests</td>
+<td style="text-align: left;">0.8-35</td>
+<td style="text-align: left;">2022-04-26</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">export</td>
+<td style="text-align: left;">0.3.0</td>
+<td style="text-align: left;">2022-12-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fansi</td>
+<td style="text-align: left;">1.0.6</td>
+<td style="text-align: left;">2023-12-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">farver</td>
+<td style="text-align: left;">2.1.1</td>
+<td style="text-align: left;">2022-07-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fastmap</td>
+<td style="text-align: left;">1.1.1</td>
+<td style="text-align: left;">2023-02-24</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">flextable</td>
+<td style="text-align: left;">0.9.5</td>
+<td style="text-align: left;">2024-03-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fontawesome</td>
+<td style="text-align: left;">0.5.2</td>
+<td style="text-align: left;">2023-08-19</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fontBitstreamVera</td>
+<td style="text-align: left;">0.1.1</td>
+<td style="text-align: left;">2017-02-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fontLiberation</td>
+<td style="text-align: left;">0.1.0</td>
+<td style="text-align: left;">2016-10-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fontquiver</td>
+<td style="text-align: left;">0.2.1</td>
+<td style="text-align: left;">2017-02-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">forcats</td>
+<td style="text-align: left;">1.0.0</td>
+<td style="text-align: left;">2023-01-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">foreach</td>
+<td style="text-align: left;">1.5.2</td>
+<td style="text-align: left;">2022-02-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">foreign</td>
+<td style="text-align: left;">0.8-86</td>
+<td style="text-align: left;">2023-11-28</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">formattable</td>
+<td style="text-align: left;">0.2.1</td>
+<td style="text-align: left;">2021-01-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fs</td>
+<td style="text-align: left;">1.6.3</td>
+<td style="text-align: left;">2023-07-20</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fst</td>
+<td style="text-align: left;">0.9.8</td>
+<td style="text-align: left;">2022-02-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fstcore</td>
+<td style="text-align: left;">0.9.18</td>
+<td style="text-align: left;">2023-12-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ftExtra</td>
+<td style="text-align: left;">0.6.3</td>
+<td style="text-align: left;">2024-04-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">furrr</td>
+<td style="text-align: left;">0.3.1</td>
+<td style="text-align: left;">2022-08-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">future</td>
+<td style="text-align: left;">1.33.2</td>
+<td style="text-align: left;">2024-03-26</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gargle</td>
+<td style="text-align: left;">1.5.2</td>
+<td style="text-align: left;">2023-07-20</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdtools</td>
+<td style="text-align: left;">0.3.7</td>
+<td style="text-align: left;">2024-03-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">generics</td>
+<td style="text-align: left;">0.1.3</td>
+<td style="text-align: left;">2022-07-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gert</td>
+<td style="text-align: left;">2.0.1</td>
+<td style="text-align: left;">2023-12-04</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gfonts</td>
+<td style="text-align: left;">0.2.0</td>
+<td style="text-align: left;">2023-01-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GGally</td>
+<td style="text-align: left;">2.2.1</td>
+<td style="text-align: left;">2024-02-14</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ggeffects</td>
+<td style="text-align: left;">1.5.2</td>
+<td style="text-align: left;">2024-04-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggfortify</td>
+<td style="text-align: left;">0.4.17</td>
+<td style="text-align: left;">2024-04-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gghighlight</td>
+<td style="text-align: left;">0.4.1</td>
+<td style="text-align: left;">2023-12-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggmice</td>
+<td style="text-align: left;">0.1.0</td>
+<td style="text-align: left;">2023-08-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ggplot2</td>
+<td style="text-align: left;">3.5.0</td>
+<td style="text-align: left;">2024-02-23</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggpubr</td>
+<td style="text-align: left;">0.6.0</td>
+<td style="text-align: left;">2023-02-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ggrepel</td>
+<td style="text-align: left;">0.9.5</td>
+<td style="text-align: left;">2024-01-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggsci</td>
+<td style="text-align: left;">3.0.3</td>
+<td style="text-align: left;">2024-03-25</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ggsignif</td>
+<td style="text-align: left;">0.6.4</td>
+<td style="text-align: left;">2022-10-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggstats</td>
+<td style="text-align: left;">0.6.0</td>
+<td style="text-align: left;">2024-04-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ggtext</td>
+<td style="text-align: left;">0.1.2</td>
+<td style="text-align: left;">2022-09-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gh</td>
+<td style="text-align: left;">1.4.1</td>
+<td style="text-align: left;">2024-03-28</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gitcreds</td>
+<td style="text-align: left;">0.1.2</td>
+<td style="text-align: left;">2022-09-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glmmTMB</td>
+<td style="text-align: left;">1.1.9</td>
+<td style="text-align: left;">2024-03-20</td>
+<td style="text-align: left;">RSPM (R 4.3.3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">glmnet</td>
+<td style="text-align: left;">4.1-8</td>
+<td style="text-align: left;">2023-08-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glmnetUtils</td>
+<td style="text-align: left;">1.1.9</td>
+<td style="text-align: left;">2023-09-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">globals</td>
+<td style="text-align: left;">0.16.3</td>
+<td style="text-align: left;">2024-03-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glue</td>
+<td style="text-align: left;">1.7.0</td>
+<td style="text-align: left;">2024-01-09</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">googledrive</td>
+<td style="text-align: left;">2.1.1</td>
+<td style="text-align: left;">2023-06-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">googlesheets4</td>
+<td style="text-align: left;">1.1.1</td>
+<td style="text-align: left;">2023-06-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">graphics</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grDevices</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">grid</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gridExtra</td>
+<td style="text-align: left;">2.3</td>
+<td style="text-align: left;">2017-09-09</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gridtext</td>
+<td style="text-align: left;">0.1.5</td>
+<td style="text-align: left;">2022-09-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gt</td>
+<td style="text-align: left;">0.10.1</td>
+<td style="text-align: left;">2024-01-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gtable</td>
+<td style="text-align: left;">0.3.5</td>
+<td style="text-align: left;">2024-04-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gtsummary</td>
+<td style="text-align: left;">1.7.2</td>
+<td style="text-align: left;">2023-07-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">haven</td>
+<td style="text-align: left;">2.5.4</td>
+<td style="text-align: left;">2023-11-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">here</td>
+<td style="text-align: left;">1.0.1</td>
+<td style="text-align: left;">2020-12-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">highr</td>
+<td style="text-align: left;">0.10</td>
+<td style="text-align: left;">2022-12-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hms</td>
+<td style="text-align: left;">1.1.3</td>
+<td style="text-align: left;">2023-03-21</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">htmltools</td>
+<td style="text-align: left;">0.5.8.1</td>
+<td style="text-align: left;">2024-04-04</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">htmlwidgets</td>
+<td style="text-align: left;">1.6.4</td>
+<td style="text-align: left;">2023-12-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">httpcode</td>
+<td style="text-align: left;">0.3.0</td>
+<td style="text-align: left;">2020-04-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">httpuv</td>
+<td style="text-align: left;">1.6.15</td>
+<td style="text-align: left;">2024-03-26</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">httr</td>
+<td style="text-align: left;">1.4.7</td>
+<td style="text-align: left;">2023-08-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">httr2</td>
+<td style="text-align: left;">1.0.1</td>
+<td style="text-align: left;">2024-04-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ids</td>
+<td style="text-align: left;">1.0.1</td>
+<td style="text-align: left;">2017-05-31</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">igraph</td>
+<td style="text-align: left;">2.0.3</td>
+<td style="text-align: left;">2024-03-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ini</td>
+<td style="text-align: left;">0.3.1</td>
+<td style="text-align: left;">2018-05-20</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">insight</td>
+<td style="text-align: left;">0.19.10</td>
+<td style="text-align: left;">2024-03-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">isoband</td>
+<td style="text-align: left;">0.2.7</td>
+<td style="text-align: left;">2022-12-20</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iterators</td>
+<td style="text-align: left;">1.0.14</td>
+<td style="text-align: left;">2022-02-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">jomo</td>
+<td style="text-align: left;">2.7-6</td>
+<td style="text-align: left;">2023-04-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">jpeg</td>
+<td style="text-align: left;">0.1-10</td>
+<td style="text-align: left;">2022-11-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">jquerylib</td>
+<td style="text-align: left;">0.1.4</td>
+<td style="text-align: left;">2021-04-26</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">jsonlite</td>
+<td style="text-align: left;">1.8.8</td>
+<td style="text-align: left;">2023-12-04</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">juicyjuice</td>
+<td style="text-align: left;">0.1.0</td>
+<td style="text-align: left;">2022-11-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">katex</td>
+<td style="text-align: left;">1.4.1</td>
+<td style="text-align: left;">2022-11-28</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KernSmooth</td>
+<td style="text-align: left;">2.23-22</td>
+<td style="text-align: left;">2023-07-10</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">km.ci</td>
+<td style="text-align: left;">0.5-6</td>
+<td style="text-align: left;">2022-04-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KMsurv</td>
+<td style="text-align: left;">0.1-5</td>
+<td style="text-align: left;">2012-12-03</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">knitr</td>
+<td style="text-align: left;">1.46</td>
+<td style="text-align: left;">2024-04-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">labeling</td>
+<td style="text-align: left;">0.4.3</td>
+<td style="text-align: left;">2023-08-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">labelled</td>
+<td style="text-align: left;">2.12.0</td>
+<td style="text-align: left;">2023-06-21</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">later</td>
+<td style="text-align: left;">1.3.2</td>
+<td style="text-align: left;">2023-12-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lattice</td>
+<td style="text-align: left;">0.22-6</td>
+<td style="text-align: left;">2024-03-20</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lifecycle</td>
+<td style="text-align: left;">1.0.4</td>
+<td style="text-align: left;">2023-11-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">listenv</td>
+<td style="text-align: left;">0.9.1</td>
+<td style="text-align: left;">2024-01-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">littler</td>
+<td style="text-align: left;">0.3.20</td>
+<td style="text-align: left;">2024-03-23</td>
+<td style="text-align: left;">RSPM (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lme4</td>
+<td style="text-align: left;">1.1-35.3</td>
+<td style="text-align: left;">2024-04-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lubridate</td>
+<td style="text-align: left;">1.9.3</td>
+<td style="text-align: left;">2023-09-27</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">magrittr</td>
+<td style="text-align: left;">2.0.3</td>
+<td style="text-align: left;">2022-03-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">markdown</td>
+<td style="text-align: left;">1.12</td>
+<td style="text-align: left;">2023-12-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MASS</td>
+<td style="text-align: left;">7.3-60.0.1</td>
+<td style="text-align: left;">2024-01-13</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Matrix</td>
+<td style="text-align: left;">1.6-5</td>
+<td style="text-align: left;">2024-01-11</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MatrixModels</td>
+<td style="text-align: left;">0.5-3</td>
+<td style="text-align: left;">2023-11-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">maxstat</td>
+<td style="text-align: left;">0.7-25</td>
+<td style="text-align: left;">2017-03-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">memoise</td>
+<td style="text-align: left;">2.0.1</td>
+<td style="text-align: left;">2021-11-26</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">methods</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mgcv</td>
+<td style="text-align: left;">1.9-1</td>
+<td style="text-align: left;">2023-12-21</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mice</td>
+<td style="text-align: left;">3.16.0</td>
+<td style="text-align: left;">2023-06-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mime</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">2021-09-28</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">minidown</td>
+<td style="text-align: left;">0.4.0</td>
+<td style="text-align: left;">2022-02-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">miniUI</td>
+<td style="text-align: left;">0.1.1.1</td>
+<td style="text-align: left;">2018-05-18</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">minqa</td>
+<td style="text-align: left;">1.2.6</td>
+<td style="text-align: left;">2023-09-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mitml</td>
+<td style="text-align: left;">0.4-5</td>
+<td style="text-align: left;">2023-03-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">modelr</td>
+<td style="text-align: left;">0.1.11</td>
+<td style="text-align: left;">2023-03-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">munsell</td>
+<td style="text-align: left;">0.5.1</td>
+<td style="text-align: left;">2024-04-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mvtnorm</td>
+<td style="text-align: left;">1.2-4</td>
+<td style="text-align: left;">2023-11-27</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nlme</td>
+<td style="text-align: left;">3.1-164</td>
+<td style="text-align: left;">2023-11-27</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nloptr</td>
+<td style="text-align: left;">2.0.3</td>
+<td style="text-align: left;">2022-05-26</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nnet</td>
+<td style="text-align: left;">7.3-19</td>
+<td style="text-align: left;">2023-05-03</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numDeriv</td>
+<td style="text-align: left;">2016.8-1.1</td>
+<td style="text-align: left;">2019-06-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">officer</td>
+<td style="text-align: left;">0.6.5</td>
+<td style="text-align: left;">2024-02-24</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">openssl</td>
+<td style="text-align: left;">2.1.2</td>
+<td style="text-align: left;">2024-04-21</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">openxlsx</td>
+<td style="text-align: left;">4.2.5.2</td>
+<td style="text-align: left;">2023-02-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ordinal</td>
+<td style="text-align: left;">2023.12-4</td>
+<td style="text-align: left;">2023-12-04</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pacman</td>
+<td style="text-align: left;">0.5.1</td>
+<td style="text-align: left;">2019-03-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pak</td>
+<td style="text-align: left;">0.7.2</td>
+<td style="text-align: left;">2024-03-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">palmerpenguins</td>
+<td style="text-align: left;">0.1.1</td>
+<td style="text-align: left;">2022-08-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pan</td>
+<td style="text-align: left;">1.9</td>
+<td style="text-align: left;">2023-12-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">parallel</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">parallelly</td>
+<td style="text-align: left;">1.37.1</td>
+<td style="text-align: left;">2024-02-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">patchwork</td>
+<td style="text-align: left;">1.2.0</td>
+<td style="text-align: left;">2024-01-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pbkrtest</td>
+<td style="text-align: left;">0.5.2</td>
+<td style="text-align: left;">2023-01-19</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pillar</td>
+<td style="text-align: left;">1.9.0</td>
+<td style="text-align: left;">2023-03-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pkgbuild</td>
+<td style="text-align: left;">1.4.4</td>
+<td style="text-align: left;">2024-03-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pkgconfig</td>
+<td style="text-align: left;">2.0.3</td>
+<td style="text-align: left;">2019-09-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pkgdown</td>
+<td style="text-align: left;">2.0.9</td>
+<td style="text-align: left;">2024-04-18</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pkgload</td>
+<td style="text-align: left;">1.3.4</td>
+<td style="text-align: left;">2024-01-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">plogr</td>
+<td style="text-align: left;">0.2.0</td>
+<td style="text-align: left;">2018-03-25</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">plyr</td>
+<td style="text-align: left;">1.8.9</td>
+<td style="text-align: left;">2023-10-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">png</td>
+<td style="text-align: left;">0.1-8</td>
+<td style="text-align: left;">2022-11-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">polynom</td>
+<td style="text-align: left;">1.4-1</td>
+<td style="text-align: left;">2022-04-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">praise</td>
+<td style="text-align: left;">1.0.0</td>
+<td style="text-align: left;">2015-08-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">prettyunits</td>
+<td style="text-align: left;">1.2.0</td>
+<td style="text-align: left;">2023-09-24</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pROC</td>
+<td style="text-align: left;">1.18.5</td>
+<td style="text-align: left;">2023-11-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">processx</td>
+<td style="text-align: left;">3.8.4</td>
+<td style="text-align: left;">2024-03-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">profvis</td>
+<td style="text-align: left;">0.3.8</td>
+<td style="text-align: left;">2023-05-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">progress</td>
+<td style="text-align: left;">1.2.3</td>
+<td style="text-align: left;">2023-12-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">promises</td>
+<td style="text-align: left;">1.3.0</td>
+<td style="text-align: left;">2024-04-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ps</td>
+<td style="text-align: left;">1.7.6</td>
+<td style="text-align: left;">2024-01-18</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">purrr</td>
+<td style="text-align: left;">1.0.2</td>
+<td style="text-align: left;">2023-08-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">quantreg</td>
+<td style="text-align: left;">5.97</td>
+<td style="text-align: left;">2023-08-19</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">quarto</td>
+<td style="text-align: left;">1.4</td>
+<td style="text-align: left;">2024-03-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R.cache</td>
+<td style="text-align: left;">0.16.0</td>
+<td style="text-align: left;">2022-07-21</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R.methodsS3</td>
+<td style="text-align: left;">1.8.2</td>
+<td style="text-align: left;">2022-06-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R.oo</td>
+<td style="text-align: left;">1.26.0</td>
+<td style="text-align: left;">2024-01-24</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R.utils</td>
+<td style="text-align: left;">2.12.3</td>
+<td style="text-align: left;">2023-11-18</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R6</td>
+<td style="text-align: left;">2.5.1</td>
+<td style="text-align: left;">2021-08-19</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ragg</td>
+<td style="text-align: left;">1.3.0</td>
+<td style="text-align: left;">2024-03-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rappdirs</td>
+<td style="text-align: left;">0.3.3</td>
+<td style="text-align: left;">2021-01-31</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rcmdcheck</td>
+<td style="text-align: left;">1.4.0</td>
+<td style="text-align: left;">2021-09-27</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RColorBrewer</td>
+<td style="text-align: left;">1.1-3</td>
+<td style="text-align: left;">2022-04-03</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rcpp</td>
+<td style="text-align: left;">1.0.12</td>
+<td style="text-align: left;">2024-01-09</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RcppEigen</td>
+<td style="text-align: left;">0.3.4.0.0</td>
+<td style="text-align: left;">2024-02-28</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RcppTOML</td>
+<td style="text-align: left;">0.2.2</td>
+<td style="text-align: left;">2023-01-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">reactable</td>
+<td style="text-align: left;">0.4.4</td>
+<td style="text-align: left;">2023-03-12</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">reactR</td>
+<td style="text-align: left;">0.5.0</td>
+<td style="text-align: left;">2023-10-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">readr</td>
+<td style="text-align: left;">2.1.5</td>
+<td style="text-align: left;">2024-01-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">readxl</td>
+<td style="text-align: left;">1.4.3</td>
+<td style="text-align: left;">2023-07-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rematch</td>
+<td style="text-align: left;">2.0.0</td>
+<td style="text-align: left;">2023-08-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rematch2</td>
+<td style="text-align: left;">2.1.2</td>
+<td style="text-align: left;">2020-05-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">remotes</td>
+<td style="text-align: left;">2.5.0</td>
+<td style="text-align: left;">2024-03-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">reprex</td>
+<td style="text-align: left;">2.1.0</td>
+<td style="text-align: left;">2024-01-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">reticulate</td>
+<td style="text-align: left;">1.36.1</td>
+<td style="text-align: left;">2024-04-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rgl</td>
+<td style="text-align: left;">1.3.1</td>
+<td style="text-align: left;">2024-03-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rlang</td>
+<td style="text-align: left;">1.1.3</td>
+<td style="text-align: left;">2024-01-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rmarkdown</td>
+<td style="text-align: left;">2.26</td>
+<td style="text-align: left;">2024-03-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">roxygen2</td>
+<td style="text-align: left;">7.3.1</td>
+<td style="text-align: left;">2024-01-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rpart</td>
+<td style="text-align: left;">4.1.23</td>
+<td style="text-align: left;">2023-12-05</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rprojroot</td>
+<td style="text-align: left;">2.0.4</td>
+<td style="text-align: left;">2023-11-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RSQLite</td>
+<td style="text-align: left;">2.3.6</td>
+<td style="text-align: left;">2024-03-31</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rstatix</td>
+<td style="text-align: left;">0.7.2</td>
+<td style="text-align: left;">2023-02-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rstudioapi</td>
+<td style="text-align: left;">0.16.0</td>
+<td style="text-align: left;">2024-03-24</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rversions</td>
+<td style="text-align: left;">2.1.2</td>
+<td style="text-align: left;">2022-08-31</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rvest</td>
+<td style="text-align: left;">1.0.4</td>
+<td style="text-align: left;">2024-02-12</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rvg</td>
+<td style="text-align: left;">0.3.3</td>
+<td style="text-align: left;">2023-05-10</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sass</td>
+<td style="text-align: left;">0.4.9</td>
+<td style="text-align: left;">2024-03-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">scales</td>
+<td style="text-align: left;">1.3.0</td>
+<td style="text-align: left;">2023-11-28</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">selectr</td>
+<td style="text-align: left;">0.4-2</td>
+<td style="text-align: left;">2019-11-20</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sessioninfo</td>
+<td style="text-align: left;">1.2.2</td>
+<td style="text-align: left;">2021-12-06</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shape</td>
+<td style="text-align: left;">1.4.6.1</td>
+<td style="text-align: left;">2024-02-23</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shiny</td>
+<td style="text-align: left;">1.8.1.1</td>
+<td style="text-align: left;">2024-04-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sourcetools</td>
+<td style="text-align: left;">0.1.7-1</td>
+<td style="text-align: left;">2023-02-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SparseM</td>
+<td style="text-align: left;">1.81</td>
+<td style="text-align: left;">2021-02-18</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">spatial</td>
+<td style="text-align: left;">7.3-17</td>
+<td style="text-align: left;">2023-07-20</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">splines</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stargazer</td>
+<td style="text-align: left;">5.2.3</td>
+<td style="text-align: left;">2022-03-04</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stats</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stats4</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stringi</td>
+<td style="text-align: left;">1.8.3</td>
+<td style="text-align: left;">2023-12-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stringr</td>
+<td style="text-align: left;">1.5.1</td>
+<td style="text-align: left;">2023-11-14</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">styler</td>
+<td style="text-align: left;">1.10.3</td>
+<td style="text-align: left;">2024-04-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">survival</td>
+<td style="text-align: left;">3.5-8</td>
+<td style="text-align: left;">2024-02-14</td>
+<td style="text-align: left;">CRAN (R 4.3.3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">survminer</td>
+<td style="text-align: left;">0.4.9</td>
+<td style="text-align: left;">2021-03-09</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">survMisc</td>
+<td style="text-align: left;">0.5.6</td>
+<td style="text-align: left;">2022-04-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">svglite</td>
+<td style="text-align: left;">2.1.3</td>
+<td style="text-align: left;">2023-12-08</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sys</td>
+<td style="text-align: left;">3.4.2</td>
+<td style="text-align: left;">2023-05-23</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">systemfonts</td>
+<td style="text-align: left;">1.0.6</td>
+<td style="text-align: left;">2024-03-07</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tcltk</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">testthat</td>
+<td style="text-align: left;">3.2.1.1</td>
+<td style="text-align: left;">2024-04-14</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">textshaping</td>
+<td style="text-align: left;">0.3.7</td>
+<td style="text-align: left;">2023-10-09</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tibble</td>
+<td style="text-align: left;">3.2.1</td>
+<td style="text-align: left;">2023-03-20</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tidylog</td>
+<td style="text-align: left;">1.0.2</td>
+<td style="text-align: left;">2020-07-03</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tidyr</td>
+<td style="text-align: left;">1.3.1</td>
+<td style="text-align: left;">2024-01-24</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tidyselect</td>
+<td style="text-align: left;">1.2.1</td>
+<td style="text-align: left;">2024-03-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tidyverse</td>
+<td style="text-align: left;">2.0.0</td>
+<td style="text-align: left;">2023-02-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">timechange</td>
+<td style="text-align: left;">0.3.0</td>
+<td style="text-align: left;">2024-01-18</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tinytex</td>
+<td style="text-align: left;">0.50</td>
+<td style="text-align: left;">2024-03-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TMB</td>
+<td style="text-align: left;">1.9.11</td>
+<td style="text-align: left;">2024-04-03</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tools</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">triebeard</td>
+<td style="text-align: left;">0.4.1</td>
+<td style="text-align: left;">2023-03-04</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tzdb</td>
+<td style="text-align: left;">0.4.0</td>
+<td style="text-align: left;">2023-05-12</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ucminf</td>
+<td style="text-align: left;">1.2.1</td>
+<td style="text-align: left;">2023-12-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">urlchecker</td>
+<td style="text-align: left;">1.0.1</td>
+<td style="text-align: left;">2021-11-30</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">urltools</td>
+<td style="text-align: left;">1.7.3</td>
+<td style="text-align: left;">2019-04-14</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">usethis</td>
+<td style="text-align: left;">2.2.3</td>
+<td style="text-align: left;">2024-02-19</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">utf8</td>
+<td style="text-align: left;">1.2.4</td>
+<td style="text-align: left;">2023-10-22</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">utils</td>
+<td style="text-align: left;">4.3.3</td>
+<td style="text-align: left;">2024-04-24</td>
+<td style="text-align: left;">local</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">uuid</td>
+<td style="text-align: left;">1.2-0</td>
+<td style="text-align: left;">2024-01-14</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V8</td>
+<td style="text-align: left;">4.4.2</td>
+<td style="text-align: left;">2024-02-15</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">vctrs</td>
+<td style="text-align: left;">0.6.5</td>
+<td style="text-align: left;">2023-12-01</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">viridisLite</td>
+<td style="text-align: left;">0.4.2</td>
+<td style="text-align: left;">2023-05-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">visNetwork</td>
+<td style="text-align: left;">2.1.2</td>
+<td style="text-align: left;">2022-09-29</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vroom</td>
+<td style="text-align: left;">1.6.5</td>
+<td style="text-align: left;">2023-12-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">waldo</td>
+<td style="text-align: left;">0.5.2</td>
+<td style="text-align: left;">2023-11-02</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">whisker</td>
+<td style="text-align: left;">0.4.1</td>
+<td style="text-align: left;">2022-12-05</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">withr</td>
+<td style="text-align: left;">3.0.0</td>
+<td style="text-align: left;">2024-01-16</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xfun</td>
+<td style="text-align: left;">0.43</td>
+<td style="text-align: left;">2024-03-25</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xml2</td>
+<td style="text-align: left;">1.3.6</td>
+<td style="text-align: left;">2023-12-04</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xopen</td>
+<td style="text-align: left;">1.0.0</td>
+<td style="text-align: left;">2018-09-17</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xtable</td>
+<td style="text-align: left;">1.8-4</td>
+<td style="text-align: left;">2019-04-21</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">yaml</td>
+<td style="text-align: left;">2.3.8</td>
+<td style="text-align: left;">2023-12-11</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">zip</td>
+<td style="text-align: left;">2.3.1</td>
+<td style="text-align: left;">2024-01-27</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zoo</td>
+<td style="text-align: left;">1.8-12</td>
+<td style="text-align: left;">2023-04-13</td>
+<td style="text-align: left;">RSPM (R 4.3.0)</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="tinytex" class="level2">
+<h2>TinyTeX</h2>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb8" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;tinytex&quot;</span> <span class="sc">%in%</span> <span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      tinytex<span class="sc">::</span><span class="fu">tlmgr</span>(<span class="st">&quot;version&quot;</span>, <span class="at">stdout =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(tinytex<span class="sc">::</span><span class="fu">tlmgr_repo</span>(<span class="at">stdout =</span> <span class="cn">TRUE</span>), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;```&quot;</span>, ., <span class="st">&quot;```&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">append</span>(<span class="st">&quot;**{tinytex} &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x304C;&#x5B8C;&#x4E86;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;**&lt;br&gt;&quot;</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;**{tinytex} &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306F;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x304C;&#x5B8C;&#x4E86;&#x3057;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;**&quot;</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># return(gsub(&apos;\\n&apos;, &apos;&apos;, w$message))</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;**{tinytex} &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x304C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;**&quot;</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</details>
+<p><strong>{tinytex}
+&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x304C;&#x5B8C;&#x4E86;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</strong><br></p>
+<pre><code>tlmgr revision 70671 (2024-03-17 02:10:09 +0100)
+tlmgr using installation: /usr/local/texlive
+TeX Live (https://tug.org/texlive) version 2024
+
+Default package repository (repository): https://www.texlive.info/tlnet-archive/2024/04/23/tlnet</code></pre>
+<section id="&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x306E;tex&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;" class="level3">
+<h3>&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x306E;TeX&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;</h3>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb10" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;tinytex&quot;</span> <span class="sc">%in%</span> <span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      tinytex<span class="sc">::</span><span class="fu">tlmgr</span>(<span class="st">&quot;list --only-installed&quot;</span>, <span class="at">stdout =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tibble</span>(<span class="at">plist =</span> .) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">package     =</span> <span class="fu">map_chr</span>(plist, <span class="sc">~</span> <span class="fu">gsub</span>(<span class="st">&quot;^i\ ([^:]+):.*&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span>, .)),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">description =</span> <span class="fu">map_chr</span>(plist, <span class="sc">~</span> <span class="fu">gsub</span>(<span class="st">&quot;^i\ .+:\ (.+)&quot;</span>,  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span>, .))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(<span class="sc">-</span>plist) <span class="sc">%&gt;%</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">&quot;simple&quot;</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>, <span class="st">&quot;&quot;</span>, w<span class="sc">$</span>message))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">package</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ae</td>
+<td style="text-align: left;">Virtual fonts for T1 encoded
+CMR-fonts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">amsfonts</td>
+<td style="text-align: left;">TeX fonts from the American Mathematical
+Society</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">amsmath</td>
+<td style="text-align: left;">AMS mathematical facilities for LaTeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">atbegshi</td>
+<td style="text-align: left;">Execute stuff at time</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">atveryend</td>
+<td style="text-align: left;">Hooks at the very end of a document</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">auxhook</td>
+<td style="text-align: left;">Hooks for auxiliary files</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">babel</td>
+<td style="text-align: left;">Multilingual support for LaTeX, LuaLaTeX,
+XeLaTeX, and Plain TeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bibtex</td>
+<td style="text-align: left;">Process bibliographies (bib files) for
+LaTeX or other formats</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bibtex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of bibtex</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bigintcalc</td>
+<td style="text-align: left;">Integer calculations on very large
+numbers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bitset</td>
+<td style="text-align: left;">Handle bit-vector datatype</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bookmark</td>
+<td style="text-align: left;">A new bookmark (outline) organization for
+hyperref</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cm</td>
+<td style="text-align: left;">Computer Modern fonts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">context</td>
+<td style="text-align: left;">The ConTeXt macro package</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">context-companion-fonts</td>
+<td style="text-align: left;">companion fonts with fixes for
+ConTeXt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">context-texlive</td>
+<td style="text-align: left;">TL-specific helpers for ConTeXt (caches,
+papersize)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">context-texlive.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of context-texlive</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">context.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of context</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dehyph</td>
+<td style="text-align: left;">German hyphenation patterns for
+traditional orthography</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dvipdfmx</td>
+<td style="text-align: left;">An extended version of dvipdfm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dvipdfmx.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of dvipdfmx</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ec</td>
+<td style="text-align: left;">Computer modern fonts in T1 and TS1
+encodings</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epstopdf-pkg</td>
+<td style="text-align: left;">Call epstopdf &#x201C;on the fly&#x201D;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">etex</td>
+<td style="text-align: left;">An extended version of TeX, from the NTS
+project</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">etexcmds</td>
+<td style="text-align: left;">Avoid name clashes with e-TeX
+commands</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">etoolbox</td>
+<td style="text-align: left;">e-TeX tools for LaTeX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fancyvrb</td>
+<td style="text-align: left;">Sophisticated verbatim text</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">firstaid</td>
+<td style="text-align: left;">First aid for external LaTeX files and
+packages that need updating</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">framed</td>
+<td style="text-align: left;">Framed or shaded regions that can break
+across pages</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geometry</td>
+<td style="text-align: left;">Flexible and complete interface to
+document dimensions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gettitlestring</td>
+<td style="text-align: left;">Clean up title references</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glyphlist</td>
+<td style="text-align: left;">Adobe Glyph List and TeX extensions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">graphics</td>
+<td style="text-align: left;">The LaTeX standard graphics bundle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">graphics-cfg</td>
+<td style="text-align: left;">Sample configuration files for LaTeX color
+and graphics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">graphics-def</td>
+<td style="text-align: left;">Colour and graphics option files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hycolor</td>
+<td style="text-align: left;">Implements colour for packages hyperref
+and bookmark</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hyperref</td>
+<td style="text-align: left;">Extensive support for hypertext in
+LaTeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hyph-utf8</td>
+<td style="text-align: left;">Hyphenation patterns expressed in
+UTF-8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hyphen-base</td>
+<td style="text-align: left;">core hyphenation support files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iftex</td>
+<td style="text-align: left;">Am I running under pdfTeX, XeTeX or
+LuaTeX?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">inconsolata</td>
+<td style="text-align: left;">A monospaced font, with support files for
+use with TeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">infwarerr</td>
+<td style="text-align: left;">Complete set of information/warning/error
+message macros</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">intcalc</td>
+<td style="text-align: left;">Expandable arithmetic operations with
+integers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">knuth-lib</td>
+<td style="text-align: left;">Core TeX and Metafont sources from
+Knuth</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">koma-script</td>
+<td style="text-align: left;">A bundle of versatile classes and
+packages</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kpathsea</td>
+<td style="text-align: left;">Path searching library for TeX-related
+files</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kpathsea.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of kpathsea</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kvdefinekeys</td>
+<td style="text-align: left;">Define keys for use in the kvsetkeys
+package</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kvoptions</td>
+<td style="text-align: left;">Key value format for package options</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kvsetkeys</td>
+<td style="text-align: left;">Key value parser with default handler
+support</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">l3backend</td>
+<td style="text-align: left;">LaTeX3 backend drivers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">l3kernel</td>
+<td style="text-align: left;">LaTeX3 programming conventions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">latex</td>
+<td style="text-align: left;">A TeX macro package that defines
+LaTeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">latex-bin</td>
+<td style="text-align: left;">LaTeX executables and man pages</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">latex-bin.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of latex-bin</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">latex-fonts</td>
+<td style="text-align: left;">A collection of fonts used in LaTeX
+distributions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">latexconfig</td>
+<td style="text-align: left;">configuration files for LaTeX-related
+formats</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">letltxmacro</td>
+<td style="text-align: left;">Let assignment for LaTeX macros</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">listings</td>
+<td style="text-align: left;">Typeset source code listings using
+LaTeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lm</td>
+<td style="text-align: left;">Latin modern fonts in outline formats</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lm-math</td>
+<td style="text-align: left;">OpenType maths fonts for Latin Modern</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ltxcmds</td>
+<td style="text-align: left;">Some LaTeX kernel commands for general
+use</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lua-alt-getopt</td>
+<td style="text-align: left;">Process application arguments the same way
+as getopt_long</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lua-uni-algos</td>
+<td style="text-align: left;">Unicode algorithms for LuaTeX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">luahbtex</td>
+<td style="text-align: left;">LuaTeX with HarfBuzz library for glyph
+shaping</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">luahbtex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of luahbtex</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">luajittex</td>
+<td style="text-align: left;">LuaTeX with just-in-time (jit) compiler,
+with and without HarfBuzz</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">luajittex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of luajittex</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lualibs</td>
+<td style="text-align: left;">Additional Lua functions for LuaTeX macro
+programmers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">luaotfload</td>
+<td style="text-align: left;">OpenType &#x2018;loader&#x2019; for Plain TeX and
+LaTeX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">luaotfload.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of luaotfload</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">luatex</td>
+<td style="text-align: left;">The LuaTeX engine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">luatex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of luatex</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">makeindex</td>
+<td style="text-align: left;">Makeindex development sources</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">makeindex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of makeindex</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">manfnt-font</td>
+<td style="text-align: left;">Knuth&#x2019;s &#x201C;manual&#x201D; fonts</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mdwtools</td>
+<td style="text-align: left;">Miscellaneous tools by Mark Wooding</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metafont</td>
+<td style="text-align: left;">A system for specifying fonts</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metafont.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of metafont</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mflogo-font</td>
+<td style="text-align: left;">Metafont logo font</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mfware</td>
+<td style="text-align: left;">Supporting tools for use with
+Metafont</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mfware.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of mfware</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">modes</td>
+<td style="text-align: left;">A collection of Metafont mode_def&#x2019;s</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">parskip</td>
+<td style="text-align: left;">Layout with zero , non-zero </td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pdfcrop</td>
+<td style="text-align: left;">Crop PDF graphics</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pdfcrop.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of pdfcrop</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pdfescape</td>
+<td style="text-align: left;">Implements pdfTeX&#x2019;s escape features using
+TeX or e-TeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pdftex</td>
+<td style="text-align: left;">A TeX extension for direct creation of
+PDF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pdftex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of pdftex</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pdftexcmds</td>
+<td style="text-align: left;">LuaTeX support for pdfTeX utility
+functions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">plain</td>
+<td style="text-align: left;">The Plain TeX format</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">refcount</td>
+<td style="text-align: left;">Counter operations with label
+references</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rerunfilecheck</td>
+<td style="text-align: left;">Checksum based rerun checks on auxiliary
+files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">scheme-infraonly</td>
+<td style="text-align: left;">infrastructure-only scheme (no TeX at
+all)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stmaryrd</td>
+<td style="text-align: left;">St Mary Road symbols for theoretical
+computer science</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stringenc</td>
+<td style="text-align: left;">Converting a string between different
+encodings</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tex</td>
+<td style="text-align: left;">A sophisticated typesetting engine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tex-ini-files</td>
+<td style="text-align: left;">Model TeX format creation files</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of tex</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">texlive-scripts</td>
+<td style="text-align: left;">TeX Live infrastructure programs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">texlive-scripts.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of texlive-scripts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">texlive.infra</td>
+<td style="text-align: left;">basic TeX Live infrastructure</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">texlive.infra.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of texlive.infra</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tikzfill</td>
+<td style="text-align: left;">TikZ libraries for filling with images and
+patterns</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tools</td>
+<td style="text-align: left;">The LaTeX standard tools bundle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">unicode-data</td>
+<td style="text-align: left;">Unicode data and loaders for TeX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">uniquecounter</td>
+<td style="text-align: left;">Provides unlimited unique counter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">url</td>
+<td style="text-align: left;">Verbatim with URL-sensitive line
+breaks</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xcolor</td>
+<td style="text-align: left;">Driver-independent color extensions for
+LaTeX and pdfLaTeX</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xetex</td>
+<td style="text-align: left;">An extended variant of TeX for use with
+Unicode sources</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xetex.x86_64-linux</td>
+<td style="text-align: left;">x86_64-linux files of xetex</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xetexconfig</td>
+<td style="text-align: left;">crop.cfg for XeLaTeX</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xkeyval</td>
+<td style="text-align: left;">Extension of the keyval package</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xpatch</td>
+<td style="text-align: left;">Extending etoolbox patching commands</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">zapfding</td>
+<td style="text-align: left;">URW &#x2018;Base 35&#x2019; font pack for LaTeX</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="python-reticulate" class="level2">
+<h2>Python &amp; {reticulate}</h2>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb11" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;reticulate&quot;</span> <span class="sc">%in%</span> <span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;**{reticulate} &#x304C;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;**</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  reticulate<span class="sc">::</span><span class="fu">py_config</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">capture.output</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;```&quot;</span>, ., <span class="st">&quot;```&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;**{reticulate} &#x304C;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;**&quot;</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;&lt;br&gt;&lt;br&gt;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;python&#x306F;&lt;br&gt;&quot;</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">system</span>(<span class="st">&quot;python --version &amp;&amp; which python&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;```&quot;</span>, ., <span class="st">&quot;```&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>()</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;```&quot;</span>, w<span class="sc">$</span>message, <span class="st">&quot;```&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">error   =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;```&quot;</span>, e<span class="sc">$</span>message, <span class="st">&quot;```&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</details>
+<p><strong>{reticulate} &#x304C;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</strong></p>
+<pre><code>python:         /opt/venv/bin/python
+libpython:      /usr/lib/python3.10/config-3.10-x86_64-linux-gnu/libpython3.10.so
+pythonhome:     /opt/venv:/opt/venv
+version:        3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+numpy:          /opt/venv/lib/python3.10/site-packages/numpy
+numpy_version:  1.26.4
+
+NOTE: Python version was forced by VIRTUAL_ENV</code></pre>
+<section id="pip-list-freeze" class="level3">
+<h3>pip list &#x2013;freeze</h3>
+<details class="chunk-details"><summary class="chunk-summary">Source</summary>
+<div class="sourceCode" id="cb13" data-summary="Source"><pre class="sourceCode r details"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system</span>(<span class="st">&quot;python -m pip list -freeze&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    w<span class="sc">$</span>message</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">error   =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    e<span class="sc">$</span>message</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  })</span></code></pre></div>
+</details>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cffi</td>
+<td style="text-align: left;">1.16.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">contourpy</td>
+<td style="text-align: left;">1.2.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cycler</td>
+<td style="text-align: left;">0.12.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fonttools</td>
+<td style="text-align: left;">4.51.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">jedi</td>
+<td style="text-align: left;">0.19.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kiwisolver</td>
+<td style="text-align: left;">1.4.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">matplotlib</td>
+<td style="text-align: left;">3.8.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numpy</td>
+<td style="text-align: left;">1.26.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">packaging</td>
+<td style="text-align: left;">24.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pandas</td>
+<td style="text-align: left;">2.2.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">parso</td>
+<td style="text-align: left;">0.8.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pillow</td>
+<td style="text-align: left;">10.3.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pip</td>
+<td style="text-align: left;">24.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">prompt-toolkit</td>
+<td style="text-align: left;">3.0.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pycparser</td>
+<td style="text-align: left;">2.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pygments</td>
+<td style="text-align: left;">2.18.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pyparsing</td>
+<td style="text-align: left;">3.1.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">python-dateutil</td>
+<td style="text-align: left;">2.9.0.post0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pytz</td>
+<td style="text-align: left;">2024.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">radian</td>
+<td style="text-align: left;">0.6.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rchitect</td>
+<td style="text-align: left;">0.4.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">seaborn</td>
+<td style="text-align: left;">0.13.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">setuptools</td>
+<td style="text-align: left;">59.6.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">six</td>
+<td style="text-align: left;">1.16.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tzdata</td>
+<td style="text-align: left;">2024.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wcwidth</td>
+<td style="text-align: left;">0.2.13</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</article>
+</main>
+</body>
+</html>
+
